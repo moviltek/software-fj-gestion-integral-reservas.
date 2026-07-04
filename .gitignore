@@ -1,0 +1,6 @@
+*.pdf
+GUIA.txt
+Repositorio*.txt
+.cursor/
+__pycache__/
+*.pyc
