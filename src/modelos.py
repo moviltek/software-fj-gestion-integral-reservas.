@@ -69,14 +69,16 @@ class ReservaSalas(Servicio):
         super().__init__(id_servicio, nombre, tarifa_base)
         self.capacidad_maxima = capacidad_maxima
 
-    def calcular_costo(self, horas, aplica_descuento=False):
+    def calcular_costo(self, horas, aplica_descuento=False, aplica_impuesto=True):
         """
         Sobrescritura del método. Calcula el costo por horas.
-        Aplica sobrecarga simulada mediante el parámetro opcional 'aplica_descuento'.
+        Aplica sobrecarga simulada mediante parámetros opcionales.
         """
         costo = self.tarifa_base * horas
         if aplica_descuento and horas > 5:
             costo *= 0.90  # 10% de descuento si son más de 5 horas
+        if aplica_impuesto:
+            costo *= 1.19  # Aplica 19% de IVA
         return costo
 
     def mostrar_detalles(self):
@@ -88,11 +90,13 @@ class AlquilerEquipos(Servicio):
         super().__init__(id_servicio, nombre, tarifa_base)
         self.requiere_deposito = requiere_deposito
 
-    def calcular_costo(self, dias, seguro_adicional=False):
-        """Calcula el costo por días. Puede incluir un seguro opcional."""
+    def calcular_costo(self, dias, seguro_adicional=False, aplica_impuesto=True):
+        """Calcula el costo por días. Puede incluir un seguro opcional e impuestos."""
         costo = self.tarifa_base * dias
         if seguro_adicional:
             costo += 50000  # Costo fijo del seguro
+        if aplica_impuesto:
+            costo *= 1.19  # Aplica 19% de IVA
         return costo
 
     def mostrar_detalles(self):
@@ -104,9 +108,12 @@ class AsesoriaEspecializada(Servicio):
         super().__init__(id_servicio, nombre, tarifa_base)
         self.especialidad = especialidad
 
-    def calcular_costo(self, sesiones):
-        """Calcula el costo por número de sesiones."""
-        return self.tarifa_base * sesiones
+    def calcular_costo(self, sesiones, aplica_impuesto=True):
+        """Calcula el costo por número de sesiones, aplicando impuestos por defecto."""
+        costo = self.tarifa_base * sesiones
+        if aplica_impuesto:
+            costo *= 1.19  # Aplica 19% de IVA
+        return costo
 
     def mostrar_detalles(self):
         return f"Asesoría: {self.nombre} | Especialidad: {self.especialidad} | Tarifa/sesión: ${self.tarifa_base}"
