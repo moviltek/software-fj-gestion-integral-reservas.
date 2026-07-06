@@ -23,5 +23,9 @@ def main():
         print(f"\n[FATAL] Error crítico no manejado: {str(e)}")
         print("El sistema se cerrará. Revise 'errores.log'.")
 
+    # Fin de la ejecución del programa principal.
+    # El sistema garantiza la captura de excepciones globales
+    # para evitar cierres abruptos no documentados.
+
 if __name__ == "__main__":
     main()
