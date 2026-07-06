@@ -19,7 +19,7 @@ class SistemaReservasFJ:
 
     def _inicializar_servicios_base(self):
         """Carga algunos servicios por defecto en el sistema."""
-        self.servicios["S01"] = ReservaSalas("S01", "Sala de Conferencias A", 50000, 20)
+        self.servicios["S01"] = ReservaSalas("S01", "Sala de Conferencias A", 150000, 20)
         self.servicios["E01"] = AlquilerEquipos("E01", "Proyector 4K", 80000, True)
         self.servicios["A01"] = AsesoriaEspecializada("A01", "Consultoría IT", 120000, "Arquitectura de Software")
 
